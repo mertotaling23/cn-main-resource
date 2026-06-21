@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开云 · 简明指南与访问说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fcf0e0 0%, #f7d9c4 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            line-height: 1.7;
+            color: #3b2b1e;
+        }
+
+        .card {
+            max-width: 880px;
+            width: 100%;
+            background: white;
+            border-radius: 36px;
+            padding: 2.8rem 2.5rem;
+            box-shadow: 0 20px 40px -12px rgba(170, 110, 70, 0.25), 0 8px 16px rgba(0,0,0,0.03);
+            transition: transform 0.2s ease;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1.2rem; }
+            .card { padding: 2rem 1.5rem; border-radius: 28px; }
+        }
+
+        .hero-tag {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #b87a5a;
+            background: #fdefe3;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 650;
+            color: #3a281d;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.9rem; }
+        }
+
+        .subhead {
+            font-size: 1.1rem;
+            color: #6b4f3a;
+            border-left: 4px solid #dba882;
+            padding-left: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary {
+            background: #fbf5ef;
+            border-radius: 24px;
+            padding: 1.4rem 1.8rem;
+            margin-bottom: 2.2rem;
+            font-size: 1rem;
+            color: #3f3024;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem 1.8rem;
+            margin: 2.2rem 0;
+        }
+
+        @media (max-width: 520px) {
+            .highlights { grid-template-columns: 1fr; }
+        }
+
+        .highlight-item {
+            background: #fcf8f3;
+            border-radius: 20px;
+            padding: 1.2rem 1.4rem;
+            transition: background 0.15s ease;
+        }
+
+        .highlight-item strong {
+            display: block;
+            font-size: 1rem;
+            color: #7f5a3e;
+            margin-bottom: 0.35rem;
+            letter-spacing: 0.3px;
+        }
+
+        .highlight-item p {
+            font-size: 0.95rem;
+            color: #4d3a2b;
+        }
+
+        .use-note {
+            background: #efe3d8;
+            border-radius: 24px;
+            padding: 1.5rem 1.8rem;
+            margin: 2rem 0 1.8rem;
+        }
+
+        .use-note h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #4b3425;
+            margin-bottom: 0.5rem;
+        }
+
+        .use-note ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .use-note li {
+            padding: 0.4rem 0 0.4rem 1.5rem;
+            position: relative;
+            color: #3f3024;
+        }
+
+        .use-note li::before {
+            content: "·";
+            position: absolute;
+            left: 0.2rem;
+            color: #b87a5a;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .action-link {
+            display: inline-block;
+            background: #dba882;
+            color: #2f1f14;
+            font-weight: 550;
+            padding: 0.7rem 2rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 8px rgba(190, 130, 80, 0.15);
+            margin: 0.6rem 0 0.2rem;
+        }
+
+        .action-link:hover {
+            background: #ce9a73;
+            box-shadow: 0 6px 12px rgba(170, 110, 70, 0.2);
+        }
+
+        .faq-mini {
+            margin: 2.5rem 0 1.2rem;
+            border-top: 1px solid #e6d5c6;
+            padding-top: 1.8rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.8rem;
+            border-radius: 16px;
+            background: #faf5f0;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            color: #5d3f2b;
+            padding: 0.3rem 0;
+            outline: none;
+        }
+
+        .faq-mini summary::marker {
+            color: #b87a5a;
+        }
+
+        .faq-mini p {
+            margin: 0.5rem 0 0.4rem;
+            padding-left: 0.3rem;
+            color: #4c3829;
+            font-size: 0.95rem;
+        }
+
+        .footer-note {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #876c58;
+            text-align: center;
+            border-top: 1px solid #efe0d3;
+            padding-top: 1.5rem;
+        }
+
+        a {
+            color: #7f583b;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #dbb394;
+        }
+
+        a:hover {
+            color: #4d3221;
+            text-decoration-color: #b87a5a;
+        }
+
+        .inline-link {
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="hero-tag">简明指南</div>
+    <h1>开云 · 产品说明与访问提醒</h1>
+    <div class="subhead">一份认真整理的操作指引，帮助你快速了解与使用</div>
+
+    <div class="summary">
+        <strong>摘要</strong><br>
+        开云是面向日常使用场景设计的服务平台，整合了信息聚合、轻量工具与内容检索。本文档从实际使用角度出发，归纳核心特点、适用场景以及访问时的注意事项，供你参考。
+    </div>
+
+    <div class="highlights">
+        <div class="highlight-item">
+            <strong>📍 信息入口清晰</strong>
+            <p>页面结构直接，主要功能模块一目了然，减少寻找成本。</p>
+        </div>
+        <div class="highlight-item">
+            <strong>⚡ 轻量响应</strong>
+            <p>适配常见设备与屏幕尺寸，操作连贯，不拖沓。</p>
+        </div>
+        <div class="highlight-item">
+            <strong>🧩 内容导向</strong>
+            <p>注重实际信息呈现，避免繁杂装饰，聚焦你需要的内容。</p>
+        </div>
+        <div class="highlight-item">
+            <strong>🔒 访问基础</strong>
+            <p>采用标准安全连接，常规网络环境即可顺畅打开。</p>
+        </div>
+    </div>
+
+    <div class="use-note">
+        <h3>使用建议</h3>
+        <ul>
+            <li>首次使用建议先浏览首页整体布局，了解功能分区。</li>
+            <li>在常规网络条件下打开，如遇到加载延迟可尝试刷新或稍后再试。</li>
+            <li>若需查找特定内容，可利用页面内导航或搜索功能（如可用）。</li>
+            <li>对页面功能有疑问时，可留意页面底部的辅助提示或常见问题区域。</li>
+        </ul>
+    </div>
+
+    <p style="margin: 1rem 0 1.4rem;">
+        如果你想直接访问服务，可以通过 <a href="https://cn-main-kai-yun.com" class="inline-link">开云</a> 进入主站。建议在熟悉界面后再逐步使用各项功能，以获得更流畅的体验。
+    </p>
+
+    <div style="text-align: center; margin: 1.6rem 0 0.8rem;">
+        <a href="https://cn-main-kai-yun.com" class="action-link">开云</a>
+        <span style="display: block; margin-top: 0.4rem; font-size: 0.85rem; color: #876c58;">以上链接直达主站</span>
+    </div>
+
+    <div class="faq-mini">
+        <details>
+            <summary>开云有哪些主要内容方向？</summary>
+            <p>平台以信息聚合与轻量工具为主，涵盖资讯速览、资源索引及常用查询功能。具体内容随版本更新有所调整。</p>
+        </details>
+        <details>
+            <summary>访问时需要注意什么？</summary>
+            <p>建议使用主流浏览器的最新版本，并保持网络稳定。页面不含自动播放或非必要弹窗，可安心浏览。</p>
+        </details>
+        <details>
+            <summary>是否支持移动端？</summary>
+            <p>支持。页面已针对手机与平板做响应式适配，横竖屏均可正常使用。</p>
+        </details>
+    </div>
+
+    <div class="footer-note">
+        本文档为产品说明页 · 内容基于当前版本整理，不构成承诺或诱导。如有变动，以实际页面为准。
+    </div>
+</div>
+</body>
+</html>

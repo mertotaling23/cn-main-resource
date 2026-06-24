@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 让热爱有回响</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fce4d6 0%, #fbe9d2 30%, #fde8cd 70%, #f9d8c2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+            line-height: 1.6;
+            color: #2b2b2b;
+        }
+
+        .page-wrapper {
+            max-width: 960px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* 主卡片容器 */
+        .main-card {
+            background: rgba(255, 255, 255, 0.80);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border-radius: 42px;
+            box-shadow: 0 20px 40px -12px rgba(180, 100, 50, 0.25), 0 8px 20px rgba(0, 0, 0, 0.02);
+            padding: 2.8rem 2.2rem;
+            transition: all 0.2s;
+        }
+
+        /* hero 区域 */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #e28743, #f3b37a);
+            border-radius: 8px;
+            margin: 1.2rem auto 0;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #201a15;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #c2652b, #e68a4c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 0.75rem;
+            color: #4e3e34;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 优势区 */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 2.8rem 0;
+        }
+
+        .benefit-item {
+            background: rgba(253, 242, 235, 0.7);
+            padding: 1.8rem 1rem;
+            border-radius: 28px;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            transition: transform 0.15s;
+            border: 1px solid rgba(255, 215, 185, 0.4);
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 235, 222, 0.8);
+        }
+
+        .benefit-icon {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #3a2c23;
+        }
+
+        .benefit-item p {
+            font-size: 0.95rem;
+            color: #5c4a3c;
+            margin-top: 0.3rem;
+        }
+
+        /* 说明区 左右布局 */
+        .story-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2.5rem 0;
+            align-items: center;
+        }
+
+        .story-text {
+            flex: 2;
+            min-width: 240px;
+        }
+
+        .story-text h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #2d241e;
+            margin-bottom: 0.6rem;
+        }
+
+        .story-text p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #3e332b;
+        }
+
+        .story-highlight {
+            background: #fff6ee;
+            padding: 0.8rem 1.2rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-left: 5px solid #e28743;
+        }
+
+        .story-highlight a {
+            color: #b65f2a;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(226, 135, 67, 0.3);
+            transition: border-color 0.2s;
+        }
+
+        .story-highlight a:hover {
+            border-bottom-color: #b65f2a;
+        }
+
+        .story-visual {
+            flex: 1.2;
+            min-width: 160px;
+            background: #f7e5d6;
+            border-radius: 32px;
+            padding: 2rem 1rem;
+            text-align: center;
+            font-size: 3.2rem;
+            box-shadow: inset 0 0 0 1px rgba(255, 195, 150, 0.25);
+        }
+
+        /* FAQ 摘要 (卡片风格) */
+        .faq-digest {
+            margin: 2.8rem 0 1.8rem;
+            background: #faf0e9;
+            border-radius: 32px;
+            padding: 1.8rem 2rem;
+        }
+
+        .faq-digest h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2a1f19;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed #e6cfbe;
+        }
+
+        .faq-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #4a3528;
+        }
+
+        .faq-a {
+            color: #5f4b3b;
+            margin-top: 0.15rem;
+            font-size: 0.95rem;
+        }
+
+        /* 底部链接 */
+        .footer-links {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid rgba(200, 150, 110, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .footer-links .footnote {
+            color: #5f4e41;
+        }
+
+        .footer-links a {
+            color: #7f5f48;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(150, 100, 70, 0.3);
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #b65f2a;
+            border-bottom-color: #b65f2a;
+        }
+
+        .footer-links .love-link {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #944e26;
+            border-bottom: 2px solid #dba27a;
+            padding-bottom: 2px;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem 0.75rem;
+            }
+            .main-card {
+                padding: 1.8rem 1.2rem;
+                border-radius: 32px;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .benefits-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+            .story-section {
+                flex-direction: column-reverse;
+            }
+            .story-visual {
+                width: 100%;
+                padding: 1.5rem;
+            }
+            .faq-digest {
+                padding: 1.2rem;
+            }
+            .footer-links {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="main-card">
+
+            <!-- hero -->
+            <div class="hero">
+                <h1>让<span>热爱</span>有回响</h1>
+                <p>不只是出发，更是每一个玩家都能找到归属的地方。<br>我们聊游戏，也聊游戏背后的生活。</p>
+            </div>
+
+            <!-- 优势区 -->
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <span class="benefit-icon">🎮</span>
+                    <h3>纯粹内容</h3>
+                    <p>从独立佳作到经典回忆，不堆砌资讯，只沉淀共鸣。</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🕹️</span>
+                    <h3>社区温度</h3>
+                    <p>真实的讨论、手记与推荐，每一条都带着玩家气息。</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">✨</span>
+                    <h3>轻快体验</h3>
+                    <p>没有弹窗轰炸，页面干净，读起来像翻一本旧杂志。</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">📬</span>
+                    <h3>持续生长</h3>
+                    <p>选题来自日常，不定期更新，像朋友安利一样自然。</p>
+                </div>
+            </div>
+
+            <!-- 说明区: 故事切入 -->
+            <div class="story-section">
+                <div class="story-text">
+                    <h2>游戏从未离开生活</h2>
+                    <p>
+                        我们相信，每一款被认真对待的游戏，都藏着一段个人史。无论是熬夜通关的RPG，还是午后随手的休闲闯关——<strong>爱游戏</strong>，更爱那些被游戏点亮的普通时刻。
+                    </p>
+                    <p>
+                        网站不追逐热点，不制造焦虑，只记录那些让人忍不住想聊一聊的体验。哪怕只是一段旋律、一个关卡设计，都值得被好好表达。
+                    </p>
+                    <div class="story-highlight">
+                        ⚡ 来看看我们正在聊什么：<a href="https://indexchina-igame.com">爱游戏</a> · 玩家手记与灵感
+                    </div>
+                </div>
+                <div class="story-visual">
+                    🎲 <br> <span style="font-size:1rem; display:block; margin-top: 8px;">“又一个好故事”</span>
+                </div>
+            </div>
+
+            <!-- FAQ 摘要 -->
+            <div class="faq-digest">
+                <h3>📌 一些你可能想知道的</h3>
+                <div class="faq-item">
+                    <div class="faq-q">❓ 这里适合什么样的玩家？</div>
+                    <div class="faq-a">只要你对游戏有好奇，不管是硬核考据党还是偶尔玩玩，都能找到感兴趣的内容。没有门槛，只有交流。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">❓ 内容多久更新一次？</div>
+                    <div class="faq-a">没有固定排期，但保持有温度的节奏。有时每周两三篇，有时一篇长文，全看灵感什么时候来。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q">❓ 有没有社区或讨论区？</div>
+                    <div class="faq-a">目前以阅读为主，未来会逐步开放轻量互动。如果你有想聊的话题，欢迎通过页面上的方式告诉我们。</div>
+                </div>
+            </div>
+
+            <!-- 底部链接 -->
+            <div class="footer-links">
+                <span class="footnote">© 爱游戏 · 保持热爱</span>
+                <span>
+                    <a href="https://indexchina-igame.com" class="love-link">爱游戏</a>
+                    <span style="margin:0 0.4rem; color:#b28d73;">/</span>
+                    <a href="#">关于</a>
+                    <span style="margin:0 0.4rem; color:#b28d73;">·</span>
+                    <a href="#">订阅</a>
+                </span>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
